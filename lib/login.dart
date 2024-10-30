@@ -3,13 +3,14 @@ import 'package:butter_project/data%20base/data_service.dart';
 import 'package:butter_project/forgot_pass.dart';
 import 'package:butter_project/home.dart';
 import 'package:butter_project/login.dart';
+import 'package:butter_project/pages/home_page.dart';
 import 'package:butter_project/register.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:local_auth/local_auth.dart';
-
+//
 class Login_Page extends StatefulWidget {
   const Login_Page({super.key});
 
@@ -118,7 +119,7 @@ class LoginState extends State<Login> {
 
     if (DataCheck != null && DataCheck['coloumnPass'] == password) {
       Navigator.of(context)
-          .push(MaterialPageRoute(builder: ((context) => Fitur2())));
+          .push(MaterialPageRoute(builder: ((context) => HomePage())));
     } else {
       setState(() {
         error_Username = DataCheck == null ? "Username tidak ditemukan" : null;
@@ -436,3 +437,149 @@ class LoginState extends State<Login> {
     ));
   }
 }
+
+// import 'package:butter_project/home.dart';
+// import 'package:flutter/material.dart';
+// import 'package:local_auth/local_auth.dart'; // Pastikan Anda memiliki dependensi ini
+// import 'your_services_file.dart'; // Gantilah dengan file yang sesuai
+// import 'karyawan_db.dart'; // Gantilah dengan file yang sesuai
+// import 'fitur2.dart'; // Pastikan ini adalah file yang benar untuk Fitur2
+// import 'register.dart'; // Pastikan ini adalah file yang benar untuk Register
+
+// class LoginState extends State<Login> {
+  // final LocalAuthentication auth = LocalAuthentication();
+  // Services dataServices = Services();
+  // bool isObscured = true;
+
+  // String? error_Username;
+  // String? error_Pass;
+
+  // TextEditingController _passKaryawan = TextEditingController();
+  // TextEditingController _usernameKaryawan = TextEditingController();
+
+  // void checkedData(String nama, String password) async {
+  //   KaryawanDB db = KaryawanDB();
+  //   var DataCheck = await db.fetchData(nama);
+
+  //   if (DataCheck != null && DataCheck['columnPass'] == password) {
+  //     // Navigasi ke halaman Fitur2 jika login berhasil
+  //     Navigator.of(context).push(MaterialPageRoute(builder: (context) => Fitur2()));
+  //   } else {
+  //     setState(() {
+  //       // Jika username tidak ditemukan atau password salah, set error message
+  //       error_Username = DataCheck == null ? "Username tidak ditemukan" : null;
+  //       error_Pass = (DataCheck != null && DataCheck['columnPass'] != password)
+  //           ? "Password tidak sesuai"
+  //           : null;
+  //     });
+  //   }
+  // }
+
+  // @override
+  // void dispose() {
+  //   _passKaryawan.dispose();
+  //   _usernameKaryawan.dispose();
+  //   super.dispose();
+  // }
+
+  // @override
+  // Widget build(BuildContext context) {
+  //   return Scaffold(
+  //     body: Container(
+  //       height: MediaQuery.of(context).size.height,
+  //       padding: EdgeInsets.all(30),
+  //       child: SingleChildScrollView(
+  //         child: Column(
+  //           mainAxisAlignment: MainAxisAlignment.center,
+  //           children: [
+  //             Text(
+  //               "Login as cashier",
+  //               style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+  //             ),
+  //             Text("Hey, Enter your details to sign in to your account"),
+  //             SizedBox(height: 30),
+  //             TextField(
+  //               controller: _usernameKaryawan,
+  //               decoration: InputDecoration(
+  //                 labelText: 'Username',
+  //                 labelStyle: TextStyle(color: Color(0xff800000), fontSize: 10),
+  //                 prefixIcon: Icon(Icons.supervised_user_circle_outlined, color: Colors.black, size: 30),
+  //                 focusedBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(30)),
+  //                 enabledBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(30)),
+  //                 errorText: error_Username,
+  //               ),
+  //               style: TextStyle(color: Colors.black),
+  //             ),
+  //             SizedBox(height: 50),
+  //             TextField(
+  //               controller: _passKaryawan,
+  //               decoration: InputDecoration(
+  //                 labelText: "Password",
+  //                 labelStyle: TextStyle(color: Color(0xff800000), fontSize: 10),
+  //                 prefixIcon: Icon(Icons.lock, color: Colors.black),
+  //                 suffixIcon: IconButton(
+  //                   onPressed: () {
+  //                     setState(() {
+  //                       isObscured = !isObscured;
+  //                     });
+  //                   },
+  //                   icon: Icon(
+  //                     isObscured ? Icons.visibility_off : Icons.visibility,
+  //                     color: Colors.black,
+  //                   ),
+  //                 ),
+  //                 focusedBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(30)),
+  //                 enabledBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(30)),
+  //                 errorText: error_Pass,
+  //               ),
+  //               obscureText: isObscured,
+  //             ),
+  //             Align(
+  //               alignment: Alignment.centerRight,
+  //               child: TextButton(
+  //                 onPressed: () {
+  //                   // Tambahkan logika untuk mengatasi lupa password jika diperlukan
+  //                 },
+  //                 child: Text("Forgot Password"),
+  //               ),
+  //             ),
+  //             SizedBox(height: 50),
+  //             ElevatedButton(
+  //               onPressed: () {
+  //                 checkedData(_usernameKaryawan.text, _passKaryawan.text);
+  //               },
+  //               child: Text("Sign-In"),
+  //               style: ElevatedButton.styleFrom(
+  //                 fixedSize: Size(MediaQuery.of(context).size.width, 50),
+  //                 foregroundColor: Colors.white,
+  //                 backgroundColor: Color(0xff800000),
+  //                 elevation: 5,
+  //               ),
+  //             ),
+  //             SizedBox(height: 50),
+  //             Row(
+  //               children: [
+  //                 Expanded(child: Divider(thickness: 1)),
+  //                 TextButton(
+  //                   onPressed: () {
+  //                     showDialog(
+  //                       context: context,
+  //                       builder: (BuildContext context) {
+  //                         return Register();
+  //                       },
+  //                     );
+  //                   },
+  //                   child: Text("Don't have an account?"),
+  //                 ),
+  //                 Expanded(child: Divider()),
+  //               ],
+  //             ),
+  //           ],
+  //         ),
+  //       ),
+  //     ),
+  //   );
+  // }
+}
+
+
