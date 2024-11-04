@@ -41,14 +41,13 @@ dependencies:
   sqflite:
   image_picker:
   local_auth: ^2.1.0
-  tflite_flutter:
   intl:
   shared_preferences:
   http:
   google_fonts:
   readmore:
-  #  firebase_core: ^1.20.0
-  #  firebase_auth: ^3.5.0
+  firebase_core:
+  firebase_analytics:
 
 dev_dependencies:
   flutter_test:

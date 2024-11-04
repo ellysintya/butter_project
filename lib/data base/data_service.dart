@@ -62,7 +62,6 @@ class Services {
   }
 
   Future<void> onCreate(Database db, int version) async {
-    // Correct SQL syntax for creating tables
     await db.execute(
       'CREATE TABLE Karyawan ('
           'id INTEGER PRIMARY KEY, '
@@ -87,11 +86,7 @@ class Services {
   Future<void> resetDatabase() async {
     String pathDatabase = await getDatabasesPath();
     String path = join(pathDatabase, dbName);
-
-    // Hapus database yang ada
     await deleteDatabase(path);
-
-    // Inisialisasi ulang database
     database = await initDatabase();
   }
 

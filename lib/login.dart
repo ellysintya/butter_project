@@ -172,7 +172,6 @@ class LoginState extends State<Login> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
                 Column(
-                  // crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
                     Text(
                       "Login as cashcier",

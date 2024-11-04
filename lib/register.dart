@@ -442,7 +442,7 @@ class _RegisterState extends State<Register> {
           email: _email.text,
           no_telp: int.parse(_noTelepon.text)));
 
-      // _showDialog("Account created successfully!");
+
       Navigator.of(context).push(MaterialPageRoute(builder: (context) => Login(),));
     } catch (e) {
       _showDialog("Failed to create account: $e");
